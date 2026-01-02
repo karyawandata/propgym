@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="container">
+      <div class="kicker">Facilities</div>
+      <div class="breadcrumb-mini mt-2">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <span>Facilities</span>
+      </div>
+      <h1 class="page-title display-6 mt-2">Fasilitas Gym Anda</h1>
+      <div class="subheading mt-2">Peralatan lengkap, sauna, ruang kelas, dan Wi‑Fi gratis untuk pengalaman latihan yang nyaman.</div>
+      <div class="d-flex flex-wrap gap-2 mt-4">
+        <a class="btn btn-neon" href="/pricing">Lihat Paket</a>
+        <a class="btn btn-ghost" href="/contact">Cek Lokasi</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="row g-3 mt-3">
+        {% for f in facilities %}
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-block h-100">
+              <div class="facility-media img-skeleton mb-3">
+                <div class="skeleton" style="position:absolute; inset:0;"></div>
+                <img class="media-cover" alt="{{ f.title }}" src="{{ f.img }}" loading="lazy" />
+                <div class="facility-badge mini-badge">{{ f.icon }}</div>
+              </div>
+              <div class="fw-semibold">{{ f.title }}</div>
+              <div class="text-secondary mt-2">{{ f.desc }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="mt-5">
+        <h2 class="h4 fw-bold">Galeri (Draft)</h2>
+        <p class="text-secondary">Tempatkan foto alat-alat, area sauna, dan ruang kelas di sini (grid + lightbox bisa ditambahkan).</p>
+        <div class="row g-3">
+          {% for i in range(1, 10) %}
+            <div class="col-6 col-md-4">
+              <div class="gallery-tile">
+                <div class="text-secondary small">Foto {{ i }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

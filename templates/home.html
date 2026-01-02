@@ -1,0 +1,396 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% set mp = membership_plans|default({'contract': []}) %}
+  {% set tms = testimonials|default([]) %}
+  <header class="hero">
+    <div class="container hero-inner hero-compact hero-full">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-7">
+          <div class="kicker">GOFIT STYLE • LATIHAN TANPA DRAMA</div>
+          <h1 class="display-4 hero-title mt-2 mb-3">Latihan dengan cara kamu bareng GoFit Fam!</h1>
+          <div class="subheading">Latihan tanpa drama antri alat. Didesain untuk kamu yang mau fokus latihan tanpa gangguan.</div>
+
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-neon btn-lg" href="#akses">Dapatkan Akses Gratis</a>
+            <a class="btn btn-ghost btn-lg" href="#membership">Paket Membership</a>
+          </div>
+
+          <div class="mt-4 d-flex flex-wrap gap-2">
+            <span class="pill">Alat lengkap</span>
+            <span class="pill">Membership transparan</span>
+            <span class="pill">PT bersertifikat</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="membership-card is-solid p-0 overflow-hidden">
+            <div class="img-skeleton" style="height: 320px;">
+              <div class="skeleton" style="position:absolute; inset:0;"></div>
+              <img alt="Gym" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=80" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="rsg-marquee" aria-label="Ready Set Go marquee" data-rsg-marquee data-state="ready">
+    <div class="rsg-viewport">
+      <div class="rsg-track">
+        <div class="rsg-group" aria-hidden="true">
+          <span class="rsg-token" data-word="ready">READY<span class="rsg-dot">.</span></span>
+          <span class="rsg-token" data-word="set">SET<span class="rsg-dot">.</span></span>
+          <span class="rsg-token" data-word="go">GO<span class="rsg-dot">.</span></span>
+          <span class="rsg-gap"></span>
+        </div>
+        <div class="rsg-group" aria-hidden="true">
+          <span class="rsg-token" data-word="ready">READY<span class="rsg-dot">.</span></span>
+          <span class="rsg-token" data-word="set">SET<span class="rsg-dot">.</span></span>
+          <span class="rsg-token" data-word="go">GO<span class="rsg-dot">.</span></span>
+          <span class="rsg-gap"></span>
+        </div>
+        <div class="rsg-group" aria-hidden="true">
+          <span class="rsg-token" data-word="ready">READY<span class="rsg-dot">.</span></span>
+          <span class="rsg-token" data-word="set">SET<span class="rsg-dot">.</span></span>
+          <span class="rsg-token" data-word="go">GO<span class="rsg-dot">.</span></span>
+          <span class="rsg-gap"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if tms and (tms|length > 0) %}
+    <section class="section border-top" data-reveal>
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+          <div>
+            <div class="kicker">Review</div>
+            <h2 class="h3 fw-bold mt-2">Apa kata member Gym Anda</h2>
+            <div class="text-secondary">Testimoni membantu kamu yakin sebelum daftar.</div>
+          </div>
+          <div class="text-lg-end">
+            <div class="cta-pair">
+              <a class="btn btn-neon btn-lg" href="/pricing">Daftar Membership</a>
+              <a class="btn btn-ghost btn-lg ms-lg-2 mt-2 mt-lg-0" target="_blank" rel="noopener" href="{{ wa_link('Halo Gym Anda, saya mau tanya membership dan trial.') }}">Tanya Admin</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-3">
+          {% for r in tms %}
+            <div class="col-md-6 col-lg-4">
+              <div class="testimonial-card p-4 h-100">
+                <div class="testimonial-quote">“{{ r.quote }}”</div>
+                <div class="testimonial-meta mt-3">{{ r.name }} • {{ r.role }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="full-bleed" data-reveal>
+    <div class="container-fluid px-0">
+      <div class="full-bleed-media img-skeleton">
+        <div class="skeleton" style="position:absolute; inset:0;"></div>
+        <img class="full-bleed-img" alt="Gym Anda" src="https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=2200&q=80" loading="lazy" />
+      </div>
+      <div class="full-bleed-content">
+        <div class="container">
+          <div class="row align-items-center gy-3">
+            <div class="col-lg-7">
+              <h2 class="h2 fw-bold mb-2">Latihan lebih fokus, suasana lebih nyaman</h2>
+              <div class="text-secondary">Area latihan luas, bersih, dan lengkap — cocok untuk beginner sampai advanced. Tinggal datang, latihan, lalu recovery.</div>
+            </div>
+            <div class="col-lg-5 text-lg-end">
+              <div class="cta-pair">
+                <a class="btn btn-neon btn-lg" href="/pricing">Join Membership</a>
+                <a class="btn btn-ghost btn-lg ms-lg-2 mt-2 mt-lg-0" target="_blank" rel="noopener" href="{{ wa_link('Halo Gym Anda, saya mau coba trial / konsultasi jadwal latihan.') }}">Trial / Konsultasi</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section border-top" data-reveal>
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+        <div>
+          <div class="kicker">Gallery</div>
+          <h2 class="h3 fw-bold mt-2">Suasana gym yang bikin betah</h2>
+          <div class="text-secondary">(Placeholder dulu — nanti tinggal ganti ke foto asli Gym Anda.)</div>
+        </div>
+      </div>
+
+      <div class="media-grid mt-4">
+        <div class="media-tile img-skeleton span-12" style="min-height: 280px;">
+          <div class="skeleton" style="position:absolute; inset:0;"></div>
+          <img alt="Main floor" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=2400&q=80" loading="lazy" />
+          <div class="tile-overlay"></div>
+          <div class="tile-label">Main floor</div>
+        </div>
+
+        <div class="media-tile img-skeleton span-6" style="min-height: 240px;">
+          <div class="skeleton" style="position:absolute; inset:0;"></div>
+          <img alt="Strength area" src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1800&q=80" loading="lazy" />
+          <div class="tile-overlay"></div>
+          <div class="tile-label">Strength</div>
+        </div>
+
+        <div class="media-tile img-skeleton span-6" style="min-height: 240px;">
+          <div class="skeleton" style="position:absolute; inset:0;"></div>
+          <img alt="Cardio zone" src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?auto=format&fit=crop&w=1800&q=80" loading="lazy" />
+          <div class="tile-overlay"></div>
+          <div class="tile-label">Cardio</div>
+        </div>
+
+        <div class="media-tile img-skeleton span-4" style="min-height: 220px;">
+          <div class="skeleton" style="position:absolute; inset:0;"></div>
+          <img alt="Free weights" src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1400&q=80" loading="lazy" />
+          <div class="tile-overlay"></div>
+          <div class="tile-label">Free weights</div>
+        </div>
+
+        <div class="media-tile img-skeleton span-4" style="min-height: 220px;">
+          <div class="skeleton" style="position:absolute; inset:0;"></div>
+          <img alt="Mobility" src="https://images.unsplash.com/photo-1517963628607-235ccdd5476c?auto=format&fit=crop&w=1400&q=80" loading="lazy" />
+          <div class="tile-overlay"></div>
+          <div class="tile-label">Mobility</div>
+        </div>
+
+        <div class="media-tile img-skeleton span-4" style="min-height: 220px;">
+          <div class="skeleton" style="position:absolute; inset:0;"></div>
+          <img alt="Training" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80" loading="lazy" />
+          <div class="tile-overlay"></div>
+          <div class="tile-label">Training</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="full-bleed-band" data-reveal>
+    <div class="band-media img-skeleton">
+      <div class="skeleton" style="position:absolute; inset:0;"></div>
+      <img alt="Workout space" src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=2400&q=80" loading="lazy" />
+      <div class="band-overlay"></div>
+    </div>
+    <div class="band-content">
+      <div class="container py-4">
+        <div class="row align-items-center gy-3">
+          <div class="col-lg-7">
+            <div class="kicker">Pengalaman Latihan yang beda</div>
+            <h2 class="h3 fw-bold mt-2 mb-2">Ruang luas, alat lengkap, dan alur latihan lebih smooth</h2>
+            <div class="text-secondary">Kalau kamu mau latihan fokus, yang dicari bukan cuma alat — tapi flow. Datang, latihan, selesai. Tanpa ribet.</div>
+          </div>
+          <div class="col-lg-5 text-lg-end">
+            <div class="cta-pair">
+              <a class="btn btn-neon btn-lg" href="#membership">Lihat Paket</a>
+              <a class="btn btn-ghost btn-lg ms-lg-2 mt-2 mt-lg-0" href="#akses">Ambil Akses Gratis</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-4">
+          <div class="feature-block h-100">
+            <div class="kicker">Pengalaman</div>
+            <div class="fw-semibold mt-2">Semua yang kamu butuhkan untuk hasil maksimal</div>
+            <div class="text-secondary mt-2">Mulai dari treadmill, strength training, dumbbells, sampai stretching area — tinggal datang dan mulai olahraga.</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="feature-block h-100">
+            <div class="kicker">Membership</div>
+            <div class="fw-semibold mt-2">Transparan & terjangkau</div>
+            <div class="text-secondary mt-2">Cek membership dan layanan dalam 1 alur. Lebih jelas, lebih simpel.</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="feature-block h-100">
+            <div class="kicker">Personal Training</div>
+            <div class="fw-semibold mt-2">Dibantu PT bersertifikat</div>
+            <div class="text-secondary mt-2">Latihan lebih aman dan terarah dengan pendampingan Personal Trainer.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="membership" class="section border-top" data-reveal>
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+        <div>
+          <div class="kicker">Paket Membership</div>
+          <h2 class="h3 fw-bold mt-2">Pilih paket yang cocok untuk target latihanmu</h2>
+          <div class="text-secondary">Kami menawarkan paket jangka pendek dan jangka panjang dengan 2 opsi pembayaran.</div>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex flex-wrap gap-2">
+        <button id="planTabContract" class="btn btn-neon" type="button">KONTRAK</button>
+      </div>
+
+      <div id="planContract" class="row g-3 mt-2">
+        {% for p in mp.contract %}
+          <div class="col-md-6 col-lg-4">
+            <div class="membership-card p-4 h-100 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="fw-bold h5 mb-0">{{ p.name }}</div>
+                <span class="badge badge-neon">{{ p.tag }}</span>
+              </div>
+              <div class="text-secondary mt-2">{{ p.desc }}</div>
+              <ul class="mt-3 text-secondary">
+                {% for f in p.features %}
+                  <li>{{ f }}</li>
+                {% endfor %}
+              </ul>
+              <a class="btn btn-neon mt-auto" target="_blank" rel="noopener" href="{{ wa_link('Halo Gym Anda, saya mau gabung membership ' ~ p.name ~ '. Tolong info cara daftar & harga.') }}">GABUNG</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section id="akses" class="section" data-reveal>
+    <div class="container">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-6">
+          <div class="kicker">Dapatkan Akses Gratis Anda!</div>
+          <h2 class="h3 fw-bold mt-2">Isi detail kamu, tim kami akan menghubungi secepatnya</h2>
+          <div class="text-secondary mt-2">Sementara pakai WhatsApp untuk submit (dummy). Nanti bisa diarahkan ke form database.</div>
+
+          <form id="accessLeadForm" class="mt-4" novalidate>
+            <label class="kicker" for="accessLead">Nama atau No. WhatsApp</label>
+            <div class="mt-2">
+              <input id="accessLead" name="accessLead" class="form-control form-control-dark" type="text" placeholder="Nama / 08xxxx" autocomplete="tel" />
+            </div>
+            <div class="d-grid gap-2 mt-3">
+              <button class="btn btn-neon btn-lg" type="submit">Kirim</button>
+              <a class="btn btn-ghost btn-lg" href="/pricing">Lihat Pricing</a>
+            </div>
+            <div class="text-secondary small mt-3">Dengan submit, kamu setuju dihubungi admin. Tanpa spam.</div>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <div class="membership-card is-solid p-0 overflow-hidden">
+            <div class="img-skeleton" style="height: 360px;">
+              <div class="skeleton" style="position:absolute; inset:0;"></div>
+              <img alt="GoFit style" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var reduceMotion = false;
+      try {
+        reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      } catch (e) {
+        reduceMotion = false;
+      }
+
+      var marquee = document.querySelector('[data-rsg-marquee]');
+      if (marquee) {
+        var states = ['ready', 'set', 'go'];
+        var idx = 0;
+        var timer = null;
+
+        var applyState = function () {
+          marquee.setAttribute('data-state', states[idx]);
+        };
+
+        var start = function () {
+          if (reduceMotion) {
+            applyState();
+            return;
+          }
+          if (timer) return;
+          timer = window.setInterval(function () {
+            idx = (idx + 1) % states.length;
+            applyState();
+          }, 1400);
+        };
+
+        var stop = function () {
+          if (!timer) return;
+          window.clearInterval(timer);
+          timer = null;
+        };
+
+        applyState();
+        start();
+        marquee.addEventListener('mouseenter', stop);
+        marquee.addEventListener('mouseleave', start);
+        marquee.addEventListener('focusin', stop);
+        marquee.addEventListener('focusout', start);
+      }
+
+      var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+      if (revealEls.length) {
+        if (reduceMotion) {
+          revealEls.forEach(function (el) { el.classList.add('is-in'); });
+        } else if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in');
+                io.unobserve(entry.target);
+              }
+            });
+          }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+
+          revealEls.forEach(function (el) { io.observe(el); });
+        } else {
+          revealEls.forEach(function (el) { el.classList.add('is-in'); });
+        }
+      }
+
+      var accessForm = document.getElementById('accessLeadForm');
+      if (accessForm) {
+        accessForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var input = document.getElementById('accessLead');
+          var val = (input && input.value ? input.value : '').trim();
+          var text = 'Halo Gym Anda, saya mau dapatkan akses gratis / trial. Nama/WA: ' + (val || '-') + '. Tolong info membership.';
+          var url = 'https://wa.me/{{ site.wa_number_e164 }}?text=' + encodeURIComponent(text);
+          window.open(url, '_blank', 'noopener');
+        });
+      }
+
+      var tabContract = document.getElementById('planTabContract');
+      var panelContract = document.getElementById('planContract');
+      if (tabContract && panelContract) {
+        tabContract.addEventListener('click', function () {
+          panelContract.style.display = '';
+          tabContract.classList.add('btn-neon');
+        });
+      }
+
+      var media = document.querySelectorAll('.img-skeleton');
+      media.forEach(function (wrap) {
+        var img = wrap.querySelector('img');
+        if (!img) return;
+        var done = function () { wrap.classList.add('is-loaded'); };
+        if (img.complete) {
+          done();
+        } else {
+          img.addEventListener('load', done, { once: true });
+          img.addEventListener('error', done, { once: true });
+        }
+      });
+    })();
+  </script>
+{% endblock %}

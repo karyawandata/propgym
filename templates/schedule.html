@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <header class="page-hero">
+    <div class="container">
+      <div class="kicker">Schedule</div>
+      <div class="breadcrumb-mini mt-2">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <span>Schedule</span>
+      </div>
+      <h1 class="page-title display-6 mt-2">Jadwal Kelas — {{ month_label }} {{ year }}</h1>
+      <div class="text-secondary mt-2">Kalender bulan berjalan untuk Zumba, Aerobic, dan MMA. (Dummy dulu — nanti tinggal sesuaikan tanggal & jam)</div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="card-dark p-3 p-md-4">
+        <div class="schedule-legend d-flex flex-wrap gap-2 gap-md-3 align-items-center mb-3">
+          <span class="schedule-pill pill-zumba">Zumba</span>
+          <span class="schedule-pill pill-aerobic">Aerobic</span>
+          <span class="schedule-pill pill-mma">MMA</span>
+          <span class="text-secondary small">Jam tertera di setiap event.</span>
+        </div>
+
+        <div class="schedule-agenda d-md-none" aria-label="Agenda jadwal (mobile)">
+          {% for week in weeks %}
+            {% for cell in week %}
+              {% if cell.day and cell.events and (cell.events|length > 0) %}
+                <div class="schedule-agenda-day">
+                  <div class="schedule-agenda-header">
+                    <div class="schedule-agenda-date">{{ cell.day }}</div>
+                    <div class="schedule-agenda-meta text-secondary">{{ month_label }} {{ year }}</div>
+                  </div>
+                  <div class="schedule-agenda-events">
+                    {% for ev in cell.events %}
+                      <div class="schedule-agenda-event {% if ev.title == 'Zumba' %}ev-zumba{% elif ev.title == 'Aerobic' %}ev-aerobic{% else %}ev-mma{% endif %}">
+                        <div class="schedule-agenda-left">
+                          <div class="schedule-agenda-title">{{ ev.title }}</div>
+                          <div class="schedule-agenda-time">{{ ev.time }}</div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+
+          <div class="text-secondary small mt-2">Tidak melihat kelas di tanggal yang kamu mau? Chat admin untuk cek update terbaru.</div>
+        </div>
+
+        <div class="schedule-scroll d-none d-md-block" aria-label="Kalender jadwal (desktop, geser ke samping)">
+          <div class="schedule-grid">
+            <div class="schedule-dow">Sen</div>
+            <div class="schedule-dow">Sel</div>
+            <div class="schedule-dow">Rab</div>
+            <div class="schedule-dow">Kam</div>
+            <div class="schedule-dow">Jum</div>
+            <div class="schedule-dow">Sab</div>
+            <div class="schedule-dow">Min</div>
+
+            {% for week in weeks %}
+              {% for cell in week %}
+                <div class="schedule-cell {% if not cell.day %}is-empty{% endif %}">
+                  {% if cell.day %}
+                    <div class="schedule-day">{{ cell.day }}</div>
+                    <div class="schedule-events">
+                      {% for ev in cell.events %}
+                        <div class="schedule-event {% if ev.title == 'Zumba' %}ev-zumba{% elif ev.title == 'Aerobic' %}ev-aerobic{% else %}ev-mma{% endif %}">
+                          <span class="schedule-event-title">{{ ev.title }}</span>
+                          <span class="schedule-event-time">{{ ev.time }}</span>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="text-secondary small mt-3">Butuh konfirmasi jadwal terbaru? Klik tombol WhatsApp dan sebutkan kelas yang kamu mau.</div>
+        <div class="d-flex flex-wrap gap-2 mt-2">
+          <a class="btn btn-neon" target="_blank" rel="noopener" href="{{ wa_link('Halo Gym Anda, saya mau tanya jadwal kelas Zumba / Aerobic / MMA untuk bulan ini.') }}">Tanya Jadwal via WhatsApp</a>
+          <a class="btn btn-ghost" href="/contact">Kontak & Lokasi</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
